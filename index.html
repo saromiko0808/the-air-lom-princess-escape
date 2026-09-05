@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#163c3a">
   <meta name="description" content="保護公主、避開暗箭，與 Lom 一起逃離追兵的粉絲向閃避遊戲。">
   <title>THE AIR：Lom，帶公主逃！</title>
-  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
   <main class="app-shell" aria-live="polite">
@@ -25,7 +25,7 @@
 
       <div class="hero-card">
         <div class="sunburst" aria-hidden="true"></div>
-        <img src="assets/lom-princess.png" alt="Lom 與公主">
+        <img src="lom-princess.png" onerror="this.onerror=null;this.src='assets/lom-princess.png'" alt="Lom 與公主">
         <div class="hero-caption"><span>守護</span><b>風之約定</b><span>逃離</span></div>
       </div>
 
@@ -65,7 +65,7 @@
       <div class="stage-frame" id="stageFrame">
         <canvas id="gameCanvas" width="720" height="980" aria-label="閃避遊戲區"></canvas>
         <div id="eventToast" class="event-toast is-hidden">
-          <img id="eventImage" src="assets/din.png" alt="">
+          <img id="eventImage" src="din.png" alt="">
           <div><b id="eventTitle">Din 援助</b><span id="eventMessage">岩石護盾啟動！</span></div>
         </div>
         <div id="centerMessage" class="center-message is-hidden"></div>
@@ -88,12 +88,12 @@
       <div id="resultStars" class="result-stars" aria-label="獲得星星">★★★</div>
       <p id="resultText">Lom 成功擋下暗箭，公主平安無事。</p>
       <div id="resultStats" class="result-stats"></div>
-      <img id="resultImage" class="result-image" src="assets/lom-princess.png" alt="Lom 與公主">
+      <img id="resultImage" class="result-image" src="lom-princess.png" alt="Lom 與公主">
       <button id="nextBtn" class="primary-button" type="button">前往第 2 關</button>
       <button id="retryBtn" class="secondary-button" type="button">重新挑戰</button>
       <button id="resultHomeBtn" class="text-button" type="button">回到首頁</button>
     </section>
   </main>
-  <script src="game.js?v=1"></script>
+  <script src="game.js?v=2"></script>
 </body>
 </html>

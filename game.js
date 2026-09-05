@@ -14,20 +14,21 @@
   const W = canvas.width;
   const H = canvas.height;
 
-  const ASSET_PATHS = {
-    lom: "assets/lom.png",
-    princess: "assets/princess.png",
-    pair: "assets/lom-princess.png",
-    lomSkill: "assets/lom-skill.png",
-    princessPortrait: "assets/princess-portrait.png",
-    din: "assets/din.png",
-    nam: "assets/nam.png",
-    fai: "assets/fai.png",
-    bua: "assets/bua.png",
-    wine: "assets/medicine-wine.png",
-    treehouse: "assets/treehouse.png",
-    ending: "assets/secret-ending.png"
+  const ASSET_FILES = {
+    lom: "lom.png",
+    princess: "princess.png",
+    pair: "lom-princess.png",
+    lomSkill: "lom-skill.png",
+    princessPortrait: "princess-portrait.png",
+    din: "din.png",
+    nam: "nam.png",
+    fai: "fai.png",
+    bua: "bua.png",
+    wine: "medicine-wine.png",
+    treehouse: "treehouse.png",
+    ending: "secret-ending.png"
   };
+  const ASSET_PATHS = { ...ASSET_FILES };
 
   const LEVELS = [
     { title: "初遇追兵", mission: "帶公主撐過第一波追兵", duration: 20, enemy: 2.6, arrow: 4.8, speed: 74, aid: 12.5 },
@@ -76,17 +77,24 @@
   }
 
   function preloadAssets() {
-    const entries = Object.entries(ASSET_PATHS);
+    const entries = Object.entries(ASSET_FILES);
     let done = 0;
-    return Promise.all(entries.map(([key, src]) => new Promise((resolve) => {
+    return Promise.all(entries.map(([key, file]) => new Promise((resolve) => {
       const img = new Image();
       img.decoding = "async";
-      img.onload = () => finish(true);
-      img.onerror = () => finish(false);
-      img.src = src;
-      function finish(ok) {
+      const candidates = [file, `assets/${file}`];
+      let candidateIndex = 0;
+      img.onload = () => finish(true, candidates[candidateIndex]);
+      img.onerror = () => {
+        candidateIndex += 1;
+        if (candidateIndex < candidates.length) img.src = candidates[candidateIndex];
+        else finish(false, file);
+      };
+      img.src = candidates[candidateIndex];
+      function finish(ok, resolvedPath) {
         done += 1;
         images[key] = ok ? img : null;
+        if (ok) ASSET_PATHS[key] = resolvedPath;
         $("#loadingBar").style.width = `${(done / entries.length) * 100}%`;
         $("#loadingText").textContent = `載入圖片 ${done} / ${entries.length}`;
         resolve();
