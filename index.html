@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#163c3a">
+  <meta name="description" content="保護公主、避開暗箭，與 Lom 一起逃離追兵的粉絲向閃避遊戲。">
+  <title>THE AIR：Lom，帶公主逃！</title>
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <main class="app-shell" aria-live="polite">
+    <section id="loadingScreen" class="screen loading-screen">
+      <div class="wind-mark" aria-hidden="true">✦</div>
+      <p>正在召集 THE AIR…</p>
+      <div class="loading-track"><span id="loadingBar"></span></div>
+      <small id="loadingText">載入圖片 0 / 12</small>
+    </section>
+
+    <section id="startScreen" class="screen start-screen is-hidden">
+      <button id="soundBtn" class="round-button sound-button" type="button" aria-label="切換音效">♪</button>
+      <div class="brand-line">THE AIR · ESCAPE</div>
+      <h1>Lom，帶公主逃！</h1>
+      <p class="lead">閃過追兵與酸毒粉的暗箭，把公主安全帶回家。</p>
+
+      <div class="hero-card">
+        <div class="sunburst" aria-hidden="true"></div>
+        <img src="assets/lom-princess.png" alt="Lom 與公主">
+        <div class="hero-caption"><span>守護</span><b>風之約定</b><span>逃離</span></div>
+      </div>
+
+      <div class="rules-row" aria-label="遊戲重點">
+        <div><b>拖曳移動</b><span>電腦也可用方向鍵</span></div>
+        <div><b>四顆愛心</b><span>被撞到不會立刻失敗</span></div>
+        <div><b>姊妹援助</b><span>找到樹屋可以回血</span></div>
+      </div>
+
+      <button id="startBtn" class="primary-button" type="button">開始第 1 關</button>
+      <button id="continueBtn" class="secondary-button is-hidden" type="button">繼續挑戰</button>
+
+      <div class="level-select-wrap">
+        <p>關卡紀錄</p>
+        <div id="levelSelect" class="level-select" aria-label="選擇已解鎖關卡"></div>
+      </div>
+      <p class="fan-note">純粉絲小遊戲 · 不含金錢、下注或購買功能</p>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen is-hidden">
+      <header class="game-header">
+        <button id="homeBtn" class="round-button" type="button" aria-label="回首頁">‹</button>
+        <div class="level-heading">
+          <span id="levelKicker">第 1 關</span>
+          <h2 id="levelTitle">初遇追兵</h2>
+        </div>
+        <button id="gameSoundBtn" class="round-button" type="button" aria-label="切換音效">♪</button>
+      </header>
+
+      <div class="hud">
+        <div><span>時間</span><strong id="timeValue">20</strong></div>
+        <div><span>生命</span><strong id="heartValue" class="hearts">♥♥♥♥</strong></div>
+        <div><span>護盾</span><strong id="shieldValue">—</strong></div>
+      </div>
+      <div class="mission-line"><span id="missionText">帶公主撐過追兵包圍</span></div>
+
+      <div class="stage-frame" id="stageFrame">
+        <canvas id="gameCanvas" width="720" height="980" aria-label="閃避遊戲區"></canvas>
+        <div id="eventToast" class="event-toast is-hidden">
+          <img id="eventImage" src="assets/din.png" alt="">
+          <div><b id="eventTitle">Din 援助</b><span id="eventMessage">岩石護盾啟動！</span></div>
+        </div>
+        <div id="centerMessage" class="center-message is-hidden"></div>
+        <div id="treeProgress" class="tree-progress is-hidden"><span></span><b>躲進樹屋中…</b></div>
+      </div>
+
+      <div class="mobile-controls">
+        <div id="joystick" class="joystick" aria-label="拖曳移動 Lom">
+          <span id="joystickKnob"></span>
+          <em>拖曳移動</em>
+        </div>
+        <button id="hugBtn" class="hug-button is-hidden" type="button">抱住公主<br><small>讓她冷靜</small></button>
+      </div>
+      <p class="desktop-hint">鍵盤：WASD／方向鍵移動，空白鍵抱住公主</p>
+    </section>
+
+    <section id="resultScreen" class="screen result-screen is-hidden">
+      <div id="resultBadge" class="result-badge">過關</div>
+      <h2 id="resultTitle">成功護送公主！</h2>
+      <div id="resultStars" class="result-stars" aria-label="獲得星星">★★★</div>
+      <p id="resultText">Lom 成功擋下暗箭，公主平安無事。</p>
+      <div id="resultStats" class="result-stats"></div>
+      <img id="resultImage" class="result-image" src="assets/lom-princess.png" alt="Lom 與公主">
+      <button id="nextBtn" class="primary-button" type="button">前往第 2 關</button>
+      <button id="retryBtn" class="secondary-button" type="button">重新挑戰</button>
+      <button id="resultHomeBtn" class="text-button" type="button">回到首頁</button>
+    </section>
+  </main>
+  <script src="game.js?v=1"></script>
+</body>
+</html>
